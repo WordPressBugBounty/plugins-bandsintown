@@ -3,7 +3,7 @@ Contributors: kwestion505, konard
 Tags: concerts, bandsintown, events, tour dates
 Requires at least: 2.7
 Tested up to: 5.9
-Stable tag: 1.3.1
+Stable tag: 1.3.4
 
 Bandsintown's Events plugin for displaying your upcoming events.
 
@@ -26,6 +26,15 @@ Click [here](https://manager.bandsintown.com/support/integrations) for installat
 See [here](https://manager.bandsintown.com/support/integrations).
 
 == Changelog ==
+
+= 1.3.4 =
+* Improve widget initialization and input sanitization.
+
+= 1.3.3 =
+* Improve widget initialization and input sanitization.
+
+= 1.3.2 =
+* Improve widget initialization and input sanitization.
 
 = 1.3.1 =
 * Fix widget initialization
