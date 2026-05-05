@@ -1,9 +1,9 @@
 === Bandsintown Events ===
-Contributors: kwestion505, konard
+Contributors: bandsintown, kwestion505, konard
 Tags: concerts, bandsintown, events, tour dates
 Requires at least: 2.7
 Tested up to: 5.9
-Stable tag: 1.3.4
+Stable tag: 1.4.0
 
 Bandsintown's Events plugin for displaying your upcoming events.
 
@@ -25,7 +25,23 @@ Click [here](https://manager.bandsintown.com/support/integrations) for installat
 
 See [here](https://manager.bandsintown.com/support/integrations).
 
+== Notes ==
+
+The plugin will be updated to match the lastest version of wordpress
+
 == Changelog ==
+
+= 1.4.0 =
+* Switch to Api widget v3 (https://widgetv3.bandsintown.com/main.min.js)
+
+= 1.3.7 =
+* Update readme.txt: new contributor first commit changes.
+
+= 1.3.6 =
+* Update readme.txt: change contributor.
+
+= 1.3.5 =
+* Update readme.txt: add notes for future usage.
 
 = 1.3.4 =
 * Improve widget initialization and input sanitization.

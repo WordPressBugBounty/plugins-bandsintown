@@ -1,0 +1,583 @@
+{
+	"src": "https://widgetv3.bandsintown.com/main.min.js",
+	"app-id": "",
+	"attributes": {
+		"MAIN": {
+			"label": "Main",
+			"description": "Main section of the widget",
+			"elements": {
+				"connectAccount": {
+                    "label": "Connect Account",
+                    "id": "connect-account",
+                    "type": "button"
+                },
+                "registerNewAccount": {
+                    "label": "Create a free account",
+                    "id": "register-new-account",
+                    "type": "link",
+                    "href": "https://www.artist.bandsintown.com/?utm_source=wordpress&utm_medium=web&utm_campaign=wordpress_plugin"
+                }
+			}
+		},
+		"GENERAL": {
+			"label": "General",
+			"description": "Configure general settings for the widget",
+			"elements": {
+				"artistName": {
+					"label": "Artist Name or ID",
+					"id": "artist-name",
+					"type": "text",
+					"required": true,
+					"description": "Enter the artist name or Bandsintown artist ID",
+					"tooltip": "'Enter the exact artist name or id as it appears on Bandsintown'",
+					"default": "",
+					"isDynamic": true
+				},
+				"appId": {
+					"label": "API Key",
+					"id": "app-id",
+					"type": "text",
+					"required": true,
+					"default": "",
+					"help": {"href": "https://help.artists.bandsintown.com/en/articles/7053475-what-is-the-bandsintown-api", "text": "Check out this link for more info."},
+					"isDynamic": true
+				},
+				"displayLimit": {
+					"label": "Events Display Limit",
+					"id": "display-limit",
+					"type": "number",
+					"description": "Maximum number of events displayed (or type the word \"All\" to show all events).",
+					"default": "15",
+					"min": 1,
+					"max": 50,
+					"isDynamic": true
+				},
+				"displayDetails": {
+					"label": "Events Description",
+					"id": "display-details",
+					"type": "checkbox",
+					"description": "Show additional event details such as venue and location",
+					"default": "true"
+				},
+				"bitLogoPosition": {
+					"label": "Bandsintown Logo Position",
+					"id": "bit-logo-position",
+					"type": "select",
+					"description": "Select the position of the Bandsintown logo in the widget",
+					"options": [
+						{ "label": "Bottom Left", "value": "bottomLeft" },
+						{ "label": "Bottom Right", "value": "bottomRight" },
+						{ "label": "Hidden", "value": "hidden" }
+					],
+					"default": "bottomRight",
+					"isDynamic": true
+				},
+				"widgetWidth": {
+					"label": "Widget Width",
+					"id": "widget-width",
+					"type": "number",
+					"min": 350,
+					"max": 2000,
+					"step": 1,
+					"default": 900,
+					"unit": "px",
+					"isDynamic": true
+				},
+				"language": {
+					"label": "Language",
+					"id": "language",
+					"type": "select",
+					"description": "Select the language for the widget",
+					"options": [
+						{ "label": "English", "value": "en" },
+						{ "label": "Spanish", "value": "es" },
+						{ "label": "French", "value": "fr" },
+						{ "label": "German", "value": "de" },
+						{ "label": "Italian", "value": "it" },
+						{ "label": "Portuguese", "value": "pt" }
+					],
+					"default": "en",
+					"isDynamic": true
+				},
+				"font": {
+					"label": "Font",
+					"id": "font",
+					"type": "select",
+					"description": "Select the font for the widget",
+					"options": [
+						{ "label": "Arial", "value": "Arial" },
+						{ "label": "Comic Sans MS", "value": "Comic Sans MS" },
+						{ "label": "Courier New", "value": "Courier New" },
+						{ "label": "Fira Sans", "value": "Fira Sans" },
+						{ "label": "Georgia", "value": "Georgia" },
+						{ "label": "Helvetica", "value": "Helvetica" },
+						{ "label": "Impact", "value": "Impact" },
+						{ "label": "Inter", "value": "Inter" },
+						{ "label": "Lato", "value": "Lato" },
+						{ "label": "Merriweather", "value": "Merriweather" },
+						{ "label": "Montserrat", "value": "Montserrat" },
+						{ "label": "Nunito", "value": "Nunito" },
+						{ "label": "Open Sans", "value": "Open Sans" },
+						{ "label": "Oswald", "value": "Oswald" },
+						{ "label": "Playfair Display", "value": "Playfair Display" },
+						{ "label": "Poppins", "value": "Poppins" },
+						{ "label": "PT Sans", "value": "PT Sans" },
+						{ "label": "Raleway", "value": "Raleway" },
+						{ "label": "Roboto", "value": "Roboto" },
+						{ "label": "Source Sans Pro", "value": "Source Sans Pro" },
+						{ "label": "Tahoma", "value": "Tahoma" },
+						{ "label": "Times New Roman", "value": "Times New Roman" },
+						{ "label": "Trebuchet MS", "value": "Trebuchet MS" },
+						{ "label": "Ubuntu", "value": "Ubuntu" },
+						{ "label": "Verdana", "value": "Verdana" }
+					],
+					"default": "Poppins",
+					"isDynamic": true
+				},
+				"backgroundColor": {
+					"label": "Background Color",
+					"id": "background-color",
+					"type": "color",
+					"default": "rgba(255,255,255,1)",
+					"isDynamic": true
+				},
+				"textColor": {
+					"label": "Text Color",
+					"id": "text-color",
+					"type": "color",
+					"default": "rgba(0,0,0,1)",
+					"isDynamic": true
+				},
+				"showDividers": {
+					"label": "Show Dividers",
+					"id": "show-dividers",
+					"type": "checkbox",
+					"description": "Toggle to show or hide separator lines between events",
+					"default": true
+				},
+				"separatorColor": {
+					"label": "Separator Color",
+					"id": "separator-color",
+					"type": "color",
+					"default": "rgba(221,221,221,1)",
+					"isDynamic": true,
+					"showBy": {
+						"control": "showDividers",
+						"value": true,
+						"falseValue": "rgba(0,0,0,0)"
+					}
+				}
+			}
+		},
+		"DATE_FORMAT": {
+			"label": "Date Format",
+			"description": "Configure general settings for the widget",
+			"elements": {
+				"dateFormatSuggestions": {
+					"label": "Date Format",
+					"id": "date-format-suggestions",
+					"type": "select",
+					"description": "Select the date format for event dates",
+					"options": [
+						{ "label": "MMM. D, YYYY", "value": "MMM. D, YYYY" },
+						{ "label": "MM/DD/YYYY", "value": "MM/DD/YYYY" },
+						{ "label": "DD/MM/YYYY", "value": "DD/MM/YYYY" },
+						{ "label": "YYYY/MM/DD", "value": "YYYY/MM/DD" },
+						{ "label": "Custom Date Format", "value": "custom" }
+					],
+					"default": "MMM. D, YYYY"
+				},
+				"dateFormat": {
+					"id": "date-format",
+					"type": "text",
+					"required": true,
+					"placeholder": "e.g. MMM. D, YYYY",
+					"default": "MMM. D, YYYY",
+					"showBy": { "control": "dateFormatSuggestions", "value": "custom" }
+				},
+				"dateOrientation": {
+					"label": "Date Orientation",
+					"id": "date-orientation",
+					"type": "select",
+					"description": "Select the orientation for date display",
+					"options": [
+						{ "label": "Horizontal", "value": "horizontal" },
+						{ "label": "Vertical", "value": "vertical" }
+					],
+					"default": "horizontal",
+					"showBy": { "control": "dateFormat", "value": "MMM. D, YYYY", "falseValue": "horizontal" }
+				}
+			}
+		},
+		"TICKETS": {
+			"label": "Tickets",
+			"description": "Configure ticket settings for the widget",
+			"elements": {
+				"eventTicketText": {
+					"label": "Text",
+					"id": "event-ticket-text",
+					"type": "text",
+					"description": "Text for the ticket button on each event",
+					"default": "TICKETS",
+					"required": true,
+					"isDynamic": true
+				},
+				"eventTicketCtaTextColor": {
+					"label": "Text Color",
+					"id": "event-ticket-cta-text-color",
+					"type": "color",
+					"description": "Color for the ticket button text",
+					"default": "#FFFFFF",
+					"dependencies" : [
+						"sold-out-button-text-color"
+					],
+					"isDynamic": true
+				},
+				"soldOutButtonTextColor": {
+					"id": "sold-out-button-text-color",
+					"type": "hidden",
+					"default": "#FFFFFF",
+					"isDynamic": true
+				},
+				"eventTicketCtaBgColor": {
+					"label": "Button Color",
+					"id": "event-ticket-cta-bg-color",
+					"type": "color",
+					"description": "Background color for the ticket button",
+					"default": "#2F95DE",
+					"dependencies" : [
+						"sold-out-button-background-color"
+					],
+					"isDynamic": true
+				},
+				"soldOutButtonBackgroundColor": {
+					"id": "sold-out-button-background-color",
+					"type": "hidden",
+					"default": "#2F95DE",
+					"isDynamic": true
+				},
+				"eventTicketCtaBorderColor": {
+					"label": "Border Color",
+					"id": "event-ticket-cta-border-color",
+					"type": "color",
+					"description": "Border color for the ticket button",
+					"default": "#2F95DE",
+					"dependencies" : [
+						"sold-out-button-border-color"
+					],
+					"isDynamic": true
+				},
+				"soldOutButtonBorderColor": {
+					"id": "sold-out-button-border-color",
+					"type": "hidden",
+					"default": "#2F95DE",
+					"isDynamic": true
+				},
+				"eventTicketCtaBorderRadius": {
+					"label": "Border Radius",
+					"id": "event-ticket-cta-border-radius",
+					"type": "number",
+					"description": "Border radius in pixels for the ticket button",
+					"default": 4,
+					"min": 0,
+					"max": 25,
+					"unit": "px"
+				}
+			}
+		},
+		"RSVP": {
+			"label": "RSVP",
+			"description": "Customize how events are displayed in the widget",
+			"elements": {
+				"eventRsvpOnlyShowIcon": {
+					"label": "RSVP Button Format",
+					"id": "event-rsvp-only-show-icon",
+					"type": "select",
+					"description": "Button or Icon",
+					"options": [
+						{ "label": "Button", "value": "false" },
+						{ "label": "Icon", "value": "true" }
+					],
+					"default": "true",
+					"isDynamic": true
+				},
+				"eventRsvpCtaSize": {
+					"label": "RSVP Button Size",
+					"id": "event-rsvp-cta-size",
+					"type": "select",
+					"options": [
+						{ "label": "Small", "value": "small" },
+						{ "label": "Medium", "value": "medium" },
+						{ "label": "Large", "value": "large" }
+					],
+					"default": "medium",
+					"showBy": { "control": "eventRsvpOnlyShowIcon", "value": "false" },
+					"isDynamic": true
+				},
+				"eventRsvpIcon": {
+					"label": "Show RSVP Icon",
+					"id": "event-rsvp-icon",
+					"type": "checkbox",
+					"description": "Enable RSVP icon display on each event",
+					"default": "false",
+					"showBy": { "control": "eventRsvpOnlyShowIcon", "value": "false" }
+				},
+				"eventRsvpText": {
+					"label": "RSVP Text",
+					"id": "event-rsvp-text",
+					"type": "text",
+					"description": "Text for the RSVP button on each event",
+					"default": "RSVP",
+					"showBy": { "control": "eventRsvpOnlyShowIcon", "value": "false" }
+				},
+				"eventRsvpPosition": {
+					"label": "RSVP Button Position",
+					"id": "event-rsvp-position",
+					"type": "select",
+					"description": "Select the position of the RSVP button on each event",
+					"options": [
+						{ "label": "Left", "value": "left" },
+						{ "label": "Right", "value": "right" }
+					],
+					"default": "left",
+					"showBy": { "control": "eventRsvpOnlyShowIcon", "value": "false" }
+				}
+			}
+		},
+		"FOLLOW": {
+			"label": "Follow",
+			"description": "Follow button settings",
+			"elements": {
+				"headerShowFollowButton": {
+					"description": "Enable follow button display",
+					"label": "Follow Button",
+					"id": "header-show-follow-button",
+					"type": "checkbox",
+					"default": true
+				},
+				"followSectionPosition": {
+					"id": "follow-section-position",
+					"type": "hidden",
+					"default": "top",
+					"showBy": {"control": "headerShowFollowButton", "value": true}
+				},
+				"followSectionCtaText": {
+					"label": "Text",
+					"id": "follow-section-cta-text",
+					"type": "text",
+					"description": "Text for the call-to-action button in the follow section",
+					"default": "FOLLOW",
+					"showBy": {"control": "headerShowFollowButton", "value": true}
+				},
+				"followSectionHeaderText": {
+					"label": "Header Text",
+					"id": "follow-section-header-text",
+					"type": "text",
+					"description": "Header text for the follow section",
+					"default": "Get updates on new shows, new music, and more",
+					"showBy": {"control": "headerShowFollowButton", "value": true},
+					"isDynamic": true
+				}
+			}
+		},
+		"PLAY_MY_CITY": {
+			"label": "Play My City",
+			"description": "Request a show button settings",
+			"elements": {
+				"showMyCity": {
+					"label": "Play My City Button",
+					"id": "show-my-city",
+					"type": "checkbox",
+					"description": "Enable Play My City button display",
+					"default": true
+				},
+				"playMyCityPosition": {
+					"id": "play-my-city-position",
+					"type": "hidden",
+					"default": "bottom",
+					"showBy": {"control": "showMyCity", "value": true }
+				},
+				"playMyCityCtaText": {
+					"label": "Text",
+					"id": "play-my-city-cta-text",
+					"type": "text",
+					"description": "Text for the call-to-action button in the Play My City section",
+					"default": "PLAY MY CITY",
+					"showBy": {"control": "showMyCity", "value": true}
+				},
+				"playMyCityHeaderText": {
+					"label": "Header Text",
+					"id": "play-my-city-header-text",
+					"type": "text",
+					"description": "Header text for the Play My City section",
+					"default": "Don’t see a show near you?",
+					"showBy": {"control": "showMyCity", "value": true},
+					"isDynamic": true
+				}
+			}
+		},
+		"DESIGN": {
+			"label": "Design",
+			"description": "(RSVP / Follow / Sold Out / Play my city) buttons settings",
+			"elements": {
+				"eventRsvpCtaBgColor": {
+					"label": "Button Color",
+					"id": "event-rsvp-cta-bg-color",
+					"type": "color",
+					"description": "Background color for RSVP, Follow, Sold Out and Play My City buttons",
+					"default": "rgba(255,255,255,1)",
+					"dependencies" : [
+						"follow-section-cta-bg-color",
+						"play-my-city-cta-bg-color"
+					],
+					"isDynamic": true
+				},
+				"followSectionCtaBgColor": {
+					"id": "follow-section-cta-bg-color",
+					"type": "hidden",
+					"default": "rgba(255,255,255,1)",
+					"showBy": {"control": "eventRsvpCtaBgColor", "value": "false"},
+					"isDynamic": true
+				},
+				"playMyCityCtaBgColor": {
+					"id": "play-my-city-cta-bg-color",
+					"type": "hidden",
+					"default": "rgba(255,255,255,1)",
+					"showBy": {"control": "eventRsvpCtaBgColor", "value": "false"},
+					"isDynamic": true
+				},
+				"eventRsvpCtaTextColor": {
+					"label": "Button Text Color",
+					"id": "event-rsvp-cta-text-color",
+					"type": "color",
+					"description": "Text color for RSVP, Follow, and Play My City buttons",
+					"default": "rgba(0,0,0,1)",
+					"dependencies": [
+						"follow-section-cta-text-color",
+						"play-my-city-cta-text-color"
+					],
+					"isDynamic": true
+				},
+				"followSectionCtaTextColor": {
+					"id": "follow-section-cta-text-color",
+					"type": "hidden",
+					"default": "rgba(0,0,0,1)",
+					"showBy": {"control": "eventRsvpCtaTextColor", "value": "false"},
+					"isDynamic": true
+				},				
+				"playMyCityCtaTextColor": {
+					"id": "play-my-city-cta-text-color",
+					"type": "hidden",
+					"default": "rgba(0,0,0,1)",
+					"showBy": {"control": "eventRsvpCtaTextColor", "value": "false"},
+					"isDynamic": true
+				},
+				"eventRsvpCtaBorderColor": {
+					"label": "Border Color",
+					"id": "event-rsvp-cta-border-color",
+					"type": "color",
+					"description": "Border color for RSVP, Follow, and Play My City buttons",
+					"default": "rgba(0,0,0,1)",
+					"dependencies": [
+						"follow-section-cta-border-color",
+						"play-my-city-cta-border-color"
+					],
+					"isDynamic": true
+				},
+				"followSectionCtaBorderColor": {
+					"id": "follow-section-cta-border-color",
+					"type": "hidden",
+					"default": "rgba(0,0,0,1)",
+					"showBy": {"control": "eventRsvpCtaBorderColor", "value": "false"},
+					"isDynamic": true
+				},
+				"playMyCityCtaBorderColor": {
+					"id": "play-my-city-cta-border-color",
+					"type": "hidden",
+					"default": "rgba(0,0,0,1)",
+					"showBy": {"control": "eventRsvpCtaBorderColor", "value": "false"},
+					"isDynamic": true
+				},
+				"eventRsvpCtaBorderRadius": {
+					"label": "Border Radius",
+					"id": "event-rsvp-cta-border-radius",
+					"type": "number",
+					"description": "Border radius for RSVP, Follow, and Play My City buttons",
+					"default": 4,
+					"min": 0,
+					"max": 25,
+					"step": 1,
+					"unit": "px",
+					"dependencies": [
+						"follow-section-cta-border-radius",
+						"play-my-city-cta-border-radius"
+					],
+					"isDynamic": true
+				},
+				"followSectionCtaBorderRadius": {
+					"id": "follow-section-cta-border-radius",
+					"type": "hidden",
+					"default": "4px",
+					"showBy": {"control": "eventRsvpCtaBorderRadius", "value": "false"},
+					"isDynamic": true
+				},
+				"playMyCityCtaBorderRadius": {
+					"id": "play-my-city-cta-border-radius",
+					"type": "hidden",
+					"default": "4px",
+					"showBy": {"control": "eventRsvpCtaBorderRadius", "value": "false"},
+					"isDynamic": true
+				}
+			}
+		}
+	},
+	"enforced_attributes": {
+		"display-local-dates": "true",
+		"local-dates-position": "tab",
+		"display-past-dates": "true",
+		"display-lineup": "false",
+		"display-start-time": "false",
+		"social-share-icon": "false",
+		"event-custom-ticket-text": "",
+		"event-ticket-cta-size": "medium",
+		"event-ticket-icon": "false",
+		"button-label-capitalization": "uppercase",
+		"button-header-capitalization": "uppercase",
+		"button-location-capitalization": "uppercase",
+		"button-venue-capitalization": "uppercase",
+		"button-date-capitalization": "uppercase",
+		"event-play-my-city-alignment": "center",
+		"event-play-my-city-cta-size": "medium",
+		"follow-section-alignment": "center",
+		"follow-section-cta-size": "medium",
+		"follow-section-cta-icon": "false",
+		"follow-section-cta-border-width": "1px",
+		"event-rsvp-cta-border-width": "1px",
+		"play-my-city-cta-border-width": "1px",
+		"event-ticket-cta-border-width": "1px",
+		"optin-cta-border-width": "1px",
+		"play-my-city-cta-icon": "false",
+		"events-to-display": "",
+		"layout-breakpoint": "900",
+		"affil-code": "",
+		"optin-font": "",
+		"optin-text-color": "",
+		"optin-bg-color": "",
+		"optin-cta-text-color": "",
+		"optin-cta-bg-color": "",
+		"optin-cta-border-radius": "1px",
+		"optin-cta-border-color": "",
+		"data-display-local-dates": "true",
+		"data-local-dates-position": "tab",
+		"data-display-past-dates": "true",
+		"data-display-lineup": "false",
+		"data-display-start-time": "false",
+		"data-social-share-icon": "false",
+		"data-button-label-capitalization": "uppercase",
+		"data-header-capitalization": "uppercase",
+		"data-location-capitalization": "uppercase",
+		"data-venue-capitalization": "uppercase",
+		"data-date-capitalization": "uppercase",
+		"data-sold-out-button-clickable": "true"
+	}
+}
