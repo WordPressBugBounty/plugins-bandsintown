@@ -150,3 +150,7 @@
 .bit-widget-container svg {
 	max-width: unset !important;
 }
+.bit-button {min-width: 120px !important;}
+.bit-details  .bit-rsvp-placeholder {
+    width: auto !important;
+}
