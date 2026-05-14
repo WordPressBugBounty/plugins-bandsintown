@@ -532,6 +532,7 @@
 		}
 	},
 	"enforced_attributes": {
+		"utm-source": "wpp",
 		"display-local-dates": "true",
 		"local-dates-position": "tab",
 		"display-past-dates": "true",

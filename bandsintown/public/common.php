@@ -216,7 +216,6 @@ function drx_render_bandsintown_block($attributes, $content, $block)
     <?php if (!empty($post_meta['artist-name'])): ?>
         <!-- Bandsintown Widget -->
         <div class="bandsintown-widget-container" style="max-width: 100%;">
-            <script type="text/javascript" src="<?php echo esc_url(get_widget_src()); ?>"></script>
             <a class="bit-widget-initializer"
                 <?php
                 foreach ($post_meta as $key => $value) : ?>

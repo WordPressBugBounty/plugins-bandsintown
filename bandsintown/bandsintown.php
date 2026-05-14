@@ -5,7 +5,9 @@ Plugin URI: https://wordpress.org/plugins/bandsintown/
 Description: Bandsintown's Events plugin makes it easy for artists to showcase their upcoming events anywhere on their WordPress-powered blog or website. Easily display an automatically updated list of your events to your fans using the widget, shortcode or template tag.
 Author: Bandsintown.com
 Author URI: https://www.bandsintown.com
-Version: 1.4.0
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Version: 1.4.1
 */
 
 // Prevent direct access
@@ -203,7 +205,6 @@ class Bandsintown_JS_Plugin
 			$widget_atts[$key] = $value;
 		}
 		$output = '<div class="bandsintown-widget-container" style="max-width: 100%;">';
-		$output .= '<script type="text/javascript" src="' . esc_url(get_widget_src()) . '"></script>';
 		$output .= " <a class='bit-widget-initializer' ";
 		foreach ($widget_atts as $key => $value) {
 			//$value = $tag_atts[$key] ?? $value;

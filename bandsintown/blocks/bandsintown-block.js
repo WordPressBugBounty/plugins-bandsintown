@@ -1016,6 +1016,7 @@
 
             // Get basic values for preview (fallback to old structure if needed)
             var artist = attributes.artistName || attributes.artist || "";
+            var appId = attributes.appId || "";
             var widgetWidthDefault = 920,
                 widgetWidth = attributes.widgetWidth || widgetWidthDefault;
             var backgroundColor = attributes.backgroundColor || "#ffffff";
@@ -1136,7 +1137,7 @@
                         },
 
                         // Live Widget Preview
-                        artist
+                        artist && appId
                             ? el(
                                   "div",
                                   {
@@ -1306,7 +1307,7 @@
                                               fontWeight: "500",
                                           },
                                       },
-                                      __("Enter an artist name to see preview", "bandsintown"),
+                                      __("Enter an artist name and an API Key to see preview", "bandsintown"),
                                   ),
                               ),
 
