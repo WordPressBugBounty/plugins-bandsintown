@@ -7,7 +7,7 @@ Author: Bandsintown.com
 Author URI: https://www.bandsintown.com
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Version: 1.4.1
+Version: 1.4.2
 */
 
 // Prevent direct access
@@ -27,13 +27,14 @@ class Bandsintown_JS_Plugin
 	{
 		if (is_admin()) {
 			// disable unnecessary settings sections in admin for now
-			//add_action('admin_menu', array($this, 'admin_menu'));
-			//add_action('admin_init', array($this, 'plugin_admin_init'));
+			add_action('admin_menu', array($this, 'admin_menu'));
+			add_action('admin_init', array($this, 'plugin_admin_init'));
 		} else {
 			add_action('wp_enqueue_scripts', array($this, 'bandsintown_tour_dates'));
 		}
 
 		add_shortcode('bandsintown_events', array($this, 'shortcode'));
+		add_shortcode('bandsintown_widget', array($this, 'shortcode_widget'));
 		add_action('widgets_init', array($this, 'bandsintown_widget_init'));
 
 		$this->options = get_option('bitp_options', []);
@@ -46,7 +47,8 @@ class Bandsintown_JS_Plugin
 
 	function bandsintown_tour_dates()
 	{
-		wp_enqueue_script('bit-tour-dates', 'https://widgetv3.bandsintown.com/main.min.js');
+		//wp_enqueue_script('bit-tour-dates', 'https://widget.bandsintown.com/main.min.js');
+		//wp_enqueue_script('bit-tour-dates', 'https://widgetv3.bandsintown.com/main.min.js');
 	}
 
 	// Admin menu management.
@@ -162,8 +164,117 @@ class Bandsintown_JS_Plugin
 		return $valid_input;
 	}
 
-	// [bandsintown_events] shortcode
+	// [bandsintown_events]
 	function shortcode($atts)
+	{
+		$default_atts = array(
+			'artist' => '',
+			'artist-name' => '',
+			'text-color' => '#000000',
+			'link-color' => '#2F95DE',
+			'link-text-color' => '#FFFFFF',
+			'background-color' => '#FFFFFF',
+			'popup-background-color' => '#FFFFFF',
+			'separator-color' => '',
+			'font' => '',
+			'widget-width' => '',
+			'display-logo' => '',
+			'display-track-button' => '',
+			'display-local-dates' => 'false',
+			'display-past-dates' => 'true',
+			'display-lineup' => '',
+			'display-details' => '',
+			'display-limit' => '15',
+			'language' => '',
+			'auto-style' => 'false',
+			'div-id' => '',
+			'facebook-page-id' => '',
+			'afill-code' => '',
+			'app-id' => ''
+		);
+
+		$sc_atts = shortcode_atts($default_atts, $atts);
+
+		// Get the artist name from the shortcode attributes
+		$artist_name = $sc_atts['artist-name'];
+		if (!empty($sc_atts['artist'])) {
+			$artist_name = $sc_atts['artist'];
+		}
+
+		// Default to the artist name from the settings if it's not set in the shortcode
+		if (empty($artist_name)) {
+			$artist_name = $this->options['artist'];
+		}
+
+		$sc_atts['artist-name'] = htmlentities($artist_name);
+		unset($sc_atts['artist']);
+
+		// Use the values from the settings if they are not set in the shortcode
+		$has_default_background_color = $sc_atts['background-color'] == $default_atts['background-color'];
+		$has_default_display_limit = $sc_atts['display-limit'] == $default_atts['display-limit'];
+		$has_default_link_color = $sc_atts['link-color'] == $default_atts['link-color'];
+		$has_default_link_text_color = $sc_atts['link-text-color'] == $default_atts['link-text-color'];
+		$has_default_text_color = $sc_atts['text-color'] == $default_atts['text-color'];
+
+		if ($has_default_background_color && !empty($this->options['background_color'])) {
+			$sc_atts['background-color'] = $this->options['background_color'];
+		}
+
+		if ($has_default_display_limit && !empty($this->options['display_limit'])) {
+			$sc_atts['display-limit'] = $this->options['display_limit'];
+		}
+
+		if ($has_default_link_color && !empty($this->options['button_and_link_color'])) {
+			$sc_atts['link-color'] = $this->options['button_and_link_color'];
+		}
+
+		if ($has_default_link_text_color && !empty($this->options['link_text_color'])) {
+			$sc_atts['link-text-color'] = $this->options['link_text_color'];
+		}
+
+		if ($has_default_text_color && !empty($this->options['text_color'])) {
+			$sc_atts['text-color'] = $this->options['text_color'];
+		}
+
+		// These atts should be omitted altogether if they are blank
+		foreach (
+			array(
+				'separator-color',
+				'font',
+				'widget-width',
+				'display-logo',
+				'display-lineup',
+				'display-details',
+				'display-track-button',
+				'language',
+				'div-id',
+				'facebook-page-id',
+				'afill-code',
+				'app-id'
+			) as $a
+		) {
+			if (empty($sc_atts[$a])) {
+				unset($sc_atts[$a]);
+			}
+		}
+
+		$data_atts = "";
+
+		foreach ($sc_atts as $att => $value) {
+			$data_atts .= 'data-' . $att . '=' . '"' . esc_attr($value) . '" ';
+		}
+
+		$options = get_option('bitp_options');
+		$output = '<script type="text/javascript" src="https://widget.bandsintown.com/main.min.js?ver=7.0"></script>';
+		$output .= '<a class="bit-widget-initializer bandsintown-events" ' . $data_atts . '></a>';
+		if (!empty($options['custom_css'])) {
+			$output .= '<style type="text/css">' . esc_html($options['custom_css']) . '</style>';
+		}
+
+		return $output;
+	}
+	// [bandsintown_widget]
+	function shortcode_widget($atts)
 	{
 		$options = get_option('bitp_options');
 		$widget_atts = array_merge([
@@ -182,6 +293,46 @@ class Bandsintown_JS_Plugin
 		return $output;
 	}
 
+	function template_tag_old($params = array(), $echo = true)
+	{
+		if (!is_array($params)) {
+			$str = $params;
+			$params = array();
+			parse_str($str, $params);
+		}
+
+		if (empty($params['artist'])) {
+			$params['artist'] = $this->options['artist'];
+		}
+
+		if (empty($params['display_limit'])) {
+			$params['display_limit'] = $this->options['display_limit'];
+		}
+
+		$output = '<a class="bit-widget-initializer bandsintown-events" '
+			. ' data-artist-name=' . htmlentities($params['artist']) . ' '
+			. ' data-text-color=' . esc_attr($this->options['text_color']) . ' '
+			. ' data-link-color="' . esc_attr($this->options['button_and_link_color']) . '" '
+			. ' data-background-color="' . esc_attr($this->options['background_color']) . '" '
+			. ' data-display-limit="' . esc_attr($params['display_limit']) . '" '
+			. ' data-link-text-color="' . esc_attr($this->options['link_text_color']) . '" '
+			. ' data-display-local-dates="false" '
+			. ' data-display-past-dates="true" '
+			. ' data-auto-style="false" '
+			. ' data-popup-background-color="#FFFFFF"></a>';
+
+		$options = get_option('bitp_options');
+
+		if (!empty($options['custom_css'])) {
+			$output .= '<style type="text/css">' . esc_html($options['custom_css']) . '</style>';
+		}
+
+		if ($echo) {
+			echo $output;
+		} else {
+			return $output;
+		}
+	}
 	// actual processing of the template tag
 	function template_tag($params = array(), $echo = true)
 	{
@@ -204,8 +355,9 @@ class Bandsintown_JS_Plugin
 		foreach ($enforced_attributes as $key => $value) {
 			$widget_atts[$key] = $value;
 		}
-		$output = '<div class="bandsintown-widget-container" style="max-width: 100%;">';
-		$output .= " <a class='bit-widget-initializer' ";
+		$output = '<script type="text/javascript" src="' . esc_url(get_widget_src()) . '"></script>';
+		$output .= '<div class="bandsintown-widget-container" style="max-width: 100%;">';
+		$output .= " <a class='bit-widget-initializer bandsintown-widget' ";
 		foreach ($widget_atts as $key => $value) {
 			//$value = $tag_atts[$key] ?? $value;
 			// Skip display-limit if value is 0 (meaning "All events")
@@ -357,5 +509,5 @@ $bitp = new Bandsintown_JS_Plugin();
 function the_bandsintown_events($params = array(), $echo = true)
 {
 	global $bitp;
-	return $bitp->template_tag($params, $echo);
+	return $bitp->template_tag_old($params, $echo);
 }

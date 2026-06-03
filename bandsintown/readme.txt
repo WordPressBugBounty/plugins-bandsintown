@@ -2,8 +2,8 @@
 Contributors: bandsintown, kwestion505
 Tags: concerts, bandsintown, events, tour dates
 Requires at least: 2.7
-Tested up to: 6.9
-Stable tag: 1.4.1
+Tested up to: 7.0
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,9 @@ The plugin will be updated to match the lastest version of wordpress
 
 
 == Changelog ==
+
+= 1.4.2 =
+* Add support for both v2 shortcode and v3 shortcode
 
 = 1.4.1 =
 * UI: Enhanced branding assets, featuring a new square icon design for better visual alignment within the WordPress Block Card.
