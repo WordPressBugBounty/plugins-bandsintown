@@ -7,7 +7,7 @@ Author: Bandsintown.com
 Author URI: https://www.bandsintown.com
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Version: 1.4.2
+Version: 1.4.3
 */
 
 // Prevent direct access
@@ -107,11 +107,13 @@ class Bandsintown_JS_Plugin
 		$artist = esc_attr($options['artist']);
 		$text_color = esc_attr($options['text_color']);
 		$background_color = esc_attr($options['background_color']);
+		$button_and_link_color = esc_attr($options['button_and_link_color']);
+		$link_text_color = esc_attr($options['link_text_color']);
 		$display_limit = esc_attr($options['display_limit']);
 		$css = esc_attr($options['custom_css']);
 
 		echo "
-			<script type='text/javascript' src='https://widgetv3.bandsintown.com/main.min.js'></script>
+			<script type='text/javascript' src='https://widget.bandsintown.com/main.min.js'></script>
 			<tr>
 			<p><label for='bitp_options[artist]'><strong>Artist</strong></label><br>
 			<input id='bitp_options_artist' name='bitp_options[artist]' type='text' value='$artist' /><br>
@@ -123,17 +125,27 @@ class Bandsintown_JS_Plugin
 
 			<p>
 				<strong>Text color:</strong>
-				<input name='bitp_options[text_color]' tabindex='1' value='" . ($text_color ?? '#000000') . "' />
+				<input name='bitp_options[text_color]' tabindex='1' value='" . $text_color . "' />
 			</p>
 
 			<p>
 				<strong>Background color:</strong>
-				<input name='bitp_options[background_color]' tabindex='2' value='" . ($background_color ?? '#FFFFFF') . "' />
+				<input name='bitp_options[background_color]' tabindex='2' value='" . $background_color . "' />
+			</p>
+
+			<p>
+				<strong>Button and Link color:</strong>
+				<input name='bitp_options[button_and_link_color]' tabindex='3' value='" . $button_and_link_color . "' />
+			</p>
+
+			<p>
+				<strong>Link Text color</strong>
+				<input name='bitp_options[link_text_color]' tabindex='4' value='" . $link_text_color . "' />
 			</p>
 
 			<p>
 				<strong>Display</strong>
-				<input name='bitp_options[display_limit]' tabindex='5' value='" . ($display_limit ?? '15') . "' />
+				<input name='bitp_options[display_limit]' tabindex='5' value='" . $display_limit . "' />
 				Events
 			</p>
 
@@ -141,11 +153,10 @@ class Bandsintown_JS_Plugin
 				<strong>Custom CSS:</strong>
 				<br>
 				<textarea name='bitp_options[custom_css]' style='width: 100%; height: 150px' tabindex='1'> $css </textarea>
-			</p>
-		";
+			</p>";
 
 		//render & output preview template tag
-		$this->template_tag($options);
+		$this->template_tag_old($options);
 	}
 
 	// Validation

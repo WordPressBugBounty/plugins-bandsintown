@@ -3,7 +3,7 @@ Contributors: bandsintown, kwestion505
 Tags: concerts, bandsintown, events, tour dates
 Requires at least: 2.7
 Tested up to: 7.0
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,9 @@ The plugin will be updated to match the lastest version of wordpress
 
 
 == Changelog ==
+
+= 1.4.3 =
+* Support v2 Shortcode Styling
 
 = 1.4.2 =
 * Add support for both v2 shortcode and v3 shortcode
