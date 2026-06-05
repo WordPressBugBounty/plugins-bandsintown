@@ -308,7 +308,7 @@
     }
 
     function generateShortcode() {
-        var shortcode = "[bandsintown_widget ";
+        var shortcode = "[bandsintown_events ";
         jQuery.each(enforcedAttributes, function (key, value) {
             shortcodeAttributes[key] = value;
         });
