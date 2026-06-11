@@ -11,32 +11,23 @@ Bandsintown's Events plugin for displaying your upcoming events.
 
 == Description ==
 
-Use the Bandsintown Events plugin to display your upcoming tour dates on your WordPress site — always up to date, no manual work needed.
+Display your upcoming tour dates on WordPress with real-time sync from Bandsintown for Artists. Event listings include direct ticket links and customizable CTAs that convert casual visitors into engaged fans.
 
-Set it up once. Every event you add or edit on Bandsintown for Artists appears on your site automatically, with direct ticket links ready to go.
+Setup takes minutes—no embed codes or technical hassle. Once configured, any event you add or update on Bandsintown for Artists instantly appears on your WordPress site.
 
 == Features ==
 
 = Event Display & Ticketing =
 
-Make it easy for fans to find your show dates and buy tickets on your website.
+Make it easy for fans to find your show dates and buy tickets.
 
 * Show upcoming tour dates and live events
 * Add customizable "TICKETS" buttons styled to match your website
 * Direct fans to purchase with zero friction
 
-= Design Customization =
+= Fan Engagement Tools (optional) =
 
-Match your site's look and feel with full styling control.
-
-* Background color, text color, dividers
-* Button styling: color, text, borders, border radius
-* Desktop width control (mobile auto-formats to full width)
-* Localized display in six languages: English, French, Spanish, German, Italian, Portuguese
-
-= Optional: Grow Your Fan List =
-
-Add fan engagement calls to action alongside your tour dates.
+Turn your tour page into a fan growth engine.
 
 * RSVP – Collect fan emails, track interest, send automated reminders
 * Follow – Build your mailing list, automate tour and release announcements
@@ -45,9 +36,18 @@ Add fan engagement calls to action alongside your tour dates.
 * Presale – Send automated presale codes and alerts via email and mobile
 * Waitlist – Track interest for sold-out or TBA shows, keep fans engaged
 
+= Design Customization =
+
+Match your site's look and feel with full styling control.
+
+* Background color, text color, dividers
+* Button styling: color, text, borders, border radius
+* Desktop width control (mobile auto-formats to full width)
+* Localized display in 6 languages: English, French, Spanish, German, Italian, Portuguese
+
 == Notes ==
 
-The plugin will be updated to match the latest version of WordPress.
+The plugin will be updated to match the lastest version of wordpress
 
 == Installation ==
 
@@ -73,13 +73,10 @@ The plugin will be updated to match the latest version of WordPress.
 == Changelog ==
 
 = 1.4.3 =
-* Restored Button and Link color and Link Text color fields to the V2 settings panel.
-* Fixed invisible RSVP button bug in legacy shortcode default output.
-* Fixed legacy shortcode backward compatibility: [bandsintown_events] restored to Widget V2 behavior.
+* Support v2 Shortcode Styling
 
 = 1.4.2 =
-* Introduced new [bandsintown_widget] shortcode for Widget V3.
-* Preserved [bandsintown_events] shortcode for legacy V2 users.
+* Add support for both v2 shortcode and v3 shortcode
 
 = 1.4.1 =
 * UI: Enhanced branding assets, featuring a new square icon design for better visual alignment within the WordPress Block Card.
@@ -195,18 +192,23 @@ Fixes: https://wordpress.org/support/topic/plugin-broke-with-https/#post-9557510
 
 == Frequently Asked Questions ==
 
-= Do I need a Bandsintown account? =
+= Do I need to paste the embed code from Bandsintown? =
 
-Yes. You'll need a free Bandsintown for Artists account. [Sign up here](https://artists.bandsintown.com/signup).
+No. The plugin loads the widget with your event listings automatically, and all configuration is done in WordPress.
 
-= What is Bandsintown for Artists? =
+= What is “app_id” and why do I need it? =
 
-Bandsintown for Artists is a free platform where you manage your tour dates, connect with fans, and distribute your shows across Spotify, YouTube, Apple, Google, Amazon Music, and more. This plugin syncs those events directly to your WordPress site.
+app_id is your unique identifier that Bandsintown uses to allow your plugin to access, display, and auto sync your events. You can retrieve it from your Bandsintown for Artists account under Settings. 
 
-= Do I need to know how to code? =
+= Can I use Artist Name or Artist ID? =
 
-No. Simply follow [these directions](https://wordpress.org/plugins/bandsintown/#installation).
+Yes.
+* If the value starts with “id_”, it will be treated as an Artist ID.
+* Otherwise, it will be treated as an Artist Name (supports accents and apostrophes).
 
-= Will my events stay up to date automatically? =
+= Why are my events not showing? =
 
-Yes. When you publish or edit events in your Bandsintown for Artists account, they automatically appear on your WordPress site — no manual updates needed.
+Common checks:
+* Confirm events are published in Bandsintown
+* Confirm the Artist Name or Artist ID is correct
+* Verify your WordPress page contains the Bandsintown block or shortcode.

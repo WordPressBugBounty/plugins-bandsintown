@@ -48,6 +48,8 @@ function get_default_setting_inputs()
         'artist' => '',
         'text_color' => '#000',
         'background_color' => '#fff',
+        'button_and_link_color' => '#2f95de',
+        'link_text_color' => '#fff',
         'display_limit' => '15',
         'custom_css' => ''
     ];
@@ -215,8 +217,9 @@ function drx_render_bandsintown_block($attributes, $content, $block)
 ?>
     <?php if (!empty($post_meta['artist-name'])): ?>
         <!-- Bandsintown Widget -->
+        <script type="text/javascript" src="<?php echo esc_url(get_widget_src()); ?>"></script>
         <div class="bandsintown-widget-container" style="max-width: 100%;">
-            <a class="bit-widget-initializer"
+            <a class="bit-widget-initializer bandsintown-widget"
                 <?php
                 foreach ($post_meta as $key => $value) : ?>
                 <?php
