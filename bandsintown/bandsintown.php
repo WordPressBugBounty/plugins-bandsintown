@@ -7,7 +7,7 @@ Author: Bandsintown.com
 Author URI: https://www.bandsintown.com
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Version: 1.4.3
+Version: 1.4.4
 */
 
 // Prevent direct access
@@ -29,6 +29,7 @@ class Bandsintown_JS_Plugin
 			// disable unnecessary settings sections in admin for now
 			add_action('admin_menu', array($this, 'admin_menu'));
 			add_action('admin_init', array($this, 'plugin_admin_init'));
+			add_action('admin_enqueue_scripts', array($this, 'bandsintown_admin_scripts'));
 		} else {
 			add_action('wp_enqueue_scripts', array($this, 'bandsintown_tour_dates'));
 		}
@@ -45,9 +46,13 @@ class Bandsintown_JS_Plugin
 		return register_widget('Bandsintown_JS_Widget');
 	}
 
+	function bandsintown_admin_scripts()
+	{
+		wp_enqueue_script('bit-plugin-admin', 'https://widget.bandsintown.com/main.min.js');
+	}
 	function bandsintown_tour_dates()
 	{
-		//wp_enqueue_script('bit-tour-dates', 'https://widget.bandsintown.com/main.min.js');
+		//wp_enqueue_script('bit-setting', 'https://widget.bandsintown.com/main.min.js');
 		//wp_enqueue_script('bit-tour-dates', 'https://widgetv3.bandsintown.com/main.min.js');
 	}
 
@@ -111,11 +116,7 @@ class Bandsintown_JS_Plugin
 		$link_text_color = esc_attr($options['link_text_color']);
 		$display_limit = esc_attr($options['display_limit']);
 		$css = esc_attr($options['custom_css']);
-
-		echo "
-			<script type='text/javascript' src='https://widget.bandsintown.com/main.min.js'></script>
-			<tr>
-			<p><label for='bitp_options[artist]'><strong>Artist</strong></label><br>
+		echo "<p><label for='bitp_options[artist]'><strong>Artist</strong></label><br>
 			<input id='bitp_options_artist' name='bitp_options[artist]' type='text' value='$artist' /><br>
 
 			<p>
@@ -321,8 +322,8 @@ class Bandsintown_JS_Plugin
 		}
 
 		$output = '<a class="bit-widget-initializer bandsintown-events" '
-			. ' data-artist-name=' . htmlentities($params['artist']) . ' '
-			. ' data-text-color=' . esc_attr($this->options['text_color']) . ' '
+			. ' data-artist-name="' . esc_attr(htmlentities($params['artist'])) . '" '
+			. ' data-text-color="' . esc_attr($this->options['text_color']) . '" '
 			. ' data-link-color="' . esc_attr($this->options['button_and_link_color']) . '" '
 			. ' data-background-color="' . esc_attr($this->options['background_color']) . '" '
 			. ' data-display-limit="' . esc_attr($params['display_limit']) . '" '
