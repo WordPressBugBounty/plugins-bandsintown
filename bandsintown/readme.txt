@@ -3,7 +3,7 @@ Contributors: bandsintown, kwestion505
 Tags: concerts, bandsintown, events, tour dates
 Requires at least: 2.7
 Tested up to: 7.0
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,9 @@ The plugin will be updated to match the latest version of WordPress.
 
 
 == Changelog ==
+
+= 1.4.5 =
+* Fixed The Media Library conflict.
 
 = 1.4.4 =
 * Update Wordpress securiry rules.

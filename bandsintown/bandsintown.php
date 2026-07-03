@@ -7,7 +7,7 @@ Author: Bandsintown.com
 Author URI: https://www.bandsintown.com
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Version: 1.4.4
+Version: 1.4.5
 */
 
 // Prevent direct access
@@ -48,8 +48,12 @@ class Bandsintown_JS_Plugin
 
 	function bandsintown_admin_scripts()
 	{
-		wp_enqueue_script('bit-plugin-admin', 'https://widget.bandsintown.com/main.min.js');
+		$current_screen = get_current_screen();
+		if ($current_screen && $current_screen->id === 'settings_page_bandsintown-settings') {
+			wp_enqueue_script('bit-plugin-admin', 'https://widget.bandsintown.com/main.min.js');
+		}
 	}
+
 	function bandsintown_tour_dates()
 	{
 		//wp_enqueue_script('bit-setting', 'https://widget.bandsintown.com/main.min.js');
